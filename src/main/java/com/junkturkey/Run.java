@@ -92,6 +92,7 @@ public class Run {
             }
             else {
                 //BotAI
+                System.out.println("lol");
             }
 
 
