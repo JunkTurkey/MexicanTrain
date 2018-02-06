@@ -18,14 +18,17 @@ public class MainGUI extends JFrame {
 //            b.setBackground(Color.black);
 //        }
 //    }
-    public MainGUI(ArrayList<Domino> playerHand){
+
+
+    public MainGUI() throws HeadlessException {
         super("Mexican Train");
         this.setBounds(400,200,700,400);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(panel);
-        Container container = this.getContentPane();
-        //container.setLayout(new GridBagLayout());
+    }
 
+    public void setSoloGame(ArrayList<Domino> playerHand){
+        Container container = this.getContentPane();
         for (Domino domino:playerHand){
             String dominoString = domino.firstside() + "|" + domino.secondside();
             JButton dominoButton = new JButton(dominoString);

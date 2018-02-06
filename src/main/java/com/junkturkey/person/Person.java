@@ -10,6 +10,8 @@ public interface Person {
 
     public void setTrain(int id);
 
+    public Train getTrain();
+
     public void addToHand(Domino domino);
 
     public void putDomino(Domino domino, Train train);
@@ -18,15 +20,11 @@ public interface Person {
 
     public int getPoints();
 
-    public Train getTrain();
-
     public void createMexicanTrain(Domino domino);
 
     public boolean search4Domino(Domino domino);
 
     public boolean isEmptyHand();
-
-    public void printHand();
 
     public ArrayList<Domino> returnHand();
 

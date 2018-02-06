@@ -8,7 +8,6 @@ public class OwnTrain implements Train {
     public int id;
     private boolean isOpenFlag = false;
     private Domino lastDomino;
-    //private Domino engine;
 
     public OwnTrain(int id) {
         this.id = id;
@@ -33,7 +32,5 @@ public class OwnTrain implements Train {
         else return false;
     }
 
-    public Domino getLast(){
-        return lastDomino;
-    }
+    public Domino getLast(){ return lastDomino; }
 }

@@ -5,11 +5,11 @@ import com.junkturkey.domino.Domino;
 public interface Train {
 
 
-    public void addDomino(Domino domino);
+    void addDomino(Domino domino);
 
-    public boolean isOpen();
+    boolean isOpen();
 
-    public Domino getLast();
+    Domino getLast();
 
 
 }

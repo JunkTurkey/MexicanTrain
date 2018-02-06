@@ -58,10 +58,6 @@ public class IndividualPerson implements Person{
         return myTrain;
     }
 
-    public void printHand(){
-        for (int i=0; i<myHand.size(); i++)
-            System.out.print(myHand.get(i).firstside() + "|" + myHand.get(i).secondside()+ "    ");
-    }
 
     public ArrayList<Domino> returnHand(){ return myHand; }
 }

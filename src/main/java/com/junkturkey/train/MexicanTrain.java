@@ -35,7 +35,5 @@ public class MexicanTrain implements Train {
         else return false;
     }
 
-    public Domino getLast(){
-        return lastDomino;
-    }
+    public Domino getLast(){ return lastDomino; }
 }

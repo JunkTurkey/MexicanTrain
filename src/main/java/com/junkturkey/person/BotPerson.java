@@ -51,10 +51,6 @@ public class BotPerson implements Person{
         else return false;
     }
 
-    public void printHand() {
-        for (int i=0; i<myHand.size(); i++)
-            System.out.print(myHand.get(i).firstside() + "|" + myHand.get(i).secondside()+ "    ");
-    }
 
     public void putDomino(Domino domino, Train train){
         train.addDomino(domino);
