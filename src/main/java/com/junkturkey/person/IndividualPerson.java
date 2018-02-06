@@ -1,13 +1,11 @@
 package com.junkturkey.person;
 
-import com.junkturkey.Run;
 import com.junkturkey.domino.Domino;
 import com.junkturkey.train.MexicanTrain;
 import com.junkturkey.train.OwnTrain;
 import com.junkturkey.train.Train;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class IndividualPerson implements Person{
 
@@ -15,7 +13,7 @@ public class IndividualPerson implements Person{
 
 
 
-    private List<Domino> myHand;
+    private ArrayList<Domino> myHand;
     private int points=0;
 
     public IndividualPerson() {
@@ -64,4 +62,6 @@ public class IndividualPerson implements Person{
         for (int i=0; i<myHand.size(); i++)
             System.out.print(myHand.get(i).firstside() + "|" + myHand.get(i).secondside()+ "    ");
     }
+
+    public ArrayList<Domino> returnHand(){ return myHand; }
 }

@@ -3,6 +3,7 @@ package com.junkturkey.person;
 import com.junkturkey.domino.Domino;
 import com.junkturkey.train.Train;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface Person {
@@ -26,5 +27,7 @@ public interface Person {
     public boolean isEmptyHand();
 
     public void printHand();
+
+    public ArrayList<Domino> returnHand();
 
 }

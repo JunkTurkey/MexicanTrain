@@ -6,12 +6,11 @@ import com.junkturkey.train.OwnTrain;
 import com.junkturkey.train.Train;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class BotPerson implements Person{
 
     private OwnTrain myTrain;
-    private List<Domino> myHand;
+    private ArrayList<Domino> myHand;
     private int points=0;
 
     public BotPerson() {
@@ -60,5 +59,9 @@ public class BotPerson implements Person{
     public void putDomino(Domino domino, Train train){
         train.addDomino(domino);
         myHand.remove(domino);
+    }
+
+    public ArrayList<Domino> returnHand(){
+        return myHand;
     }
 }

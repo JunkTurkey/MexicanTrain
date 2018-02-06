@@ -53,6 +53,8 @@ public class Run {
     //Round stage
     public static void Round(HashMap<Integer, Person> individs, int dominoLevel){
 
+
+
         final Random random = new Random();
 
         List<Domino> roundDominos = dominos;
@@ -68,6 +70,12 @@ public class Run {
                 individ.addToHand(roundDominos.get(temp));
                 roundDominos.remove(temp);
             }
+        }
+        int i=0;
+        while (individs.get(i).getClass()==IndividualPerson.class){
+            MainGUI form = new MainGUI(individs.get(i).returnHand());
+            form.setVisible(true);
+            i++;
         }
         while (Turn(individs)){}
 
