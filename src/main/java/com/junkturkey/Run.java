@@ -9,9 +9,10 @@ import java.util.*;
 
 public class Run {
 
-    public static ArrayList<Domino> dominos;
-    public static Domino engine;
-    public static MainGUI form;
+    private static ArrayList<Domino> dominos;
+    private static Domino engine;
+    private static MainGUI form;
+    private static HashMap<Integer, Person> personMap;
 
     public static void main(String[] args) {
         Run.Game(12, 5, 1);
@@ -29,7 +30,7 @@ public class Run {
             }
         }
 
-        HashMap<Integer, Person> personMap = new HashMap<Integer, Person>() ;
+        personMap = new HashMap<Integer, Person>() ;
 
         //Creating players instances
         for (int i = 0; i<individualPlayersAmount; i++) {
@@ -47,13 +48,13 @@ public class Run {
 
         //Starting round
         for (int i=dominoLevel; i>0; i--){
-            Round(personMap, dominoLevel);
+            Round(dominoLevel);
         }
 
     }
 
     //Round stage
-    public static void Round(HashMap<Integer, Person> individs, int dominoLevel){
+    public static void Round(int dominoLevel){
 
         final Random random = new Random();
 
@@ -63,8 +64,8 @@ public class Run {
         roundDominos.remove(engine);
 
         //Gaining dominos to the start hand
-        for (int i=0; i<individs.size(); i++){
-            Person individ = individs.get(i);
+        for (int i=0; i<personMap.size(); i++){
+            Person individ = personMap.get(i);
             for (int j = 0; j < 12; j++) {        //TO CHANGE: Change (12) as start dominos amount
                 int temp = random.nextInt(roundDominos.size());
                 individ.addToHand(roundDominos.get(temp));
@@ -76,33 +77,34 @@ public class Run {
             }
         }
 
-        while (Turn(individs)){}
+        //while (Turn(personMap)){}
 
     }
 
     //Turn stage
-    public static boolean Turn(HashMap<Integer, Person> individs) {
-        Scanner in = new Scanner(System.in);
-        for (int i=0; i<individs.size();i++){
-            if (individs.get(i).getClass()==IndividualPerson.class){
-                System.out.println("enter domino x y");
-                Domino tempDomino = new Domino(in.nextInt(), in.nextInt());
-                if (individs.get(i).search4Domino(tempDomino)){
-                    System.out.println("enter train name");
-                    if (in.nextLine().equals("OwnTrain") && individs.get(i).getTrain().isOpen() &&
-                            individs.get(i).getTrain().getLast().getViableSide()==tempDomino.firstside() ||
-                            individs.get(i).getTrain().getLast().getViableSide()==tempDomino.secondside()){     //TO CHANGE
-                        individs.get(i).putDomino(tempDomino,individs.get(i).getTrain());
-                    }
-                }
+    public static boolean Turn() {
+        for (int i=0; i<personMap.size();i++){
+            if (personMap.get(i).getClass()==IndividualPerson.class) {
+//                if (personMap.get(i).search4Domino(tempDomino)){
+//                    System.out.println("enter train name");
+//                    if (in.nextLine().equals("OwnTrain") && personMap.get(i).getTrain().isOpen() &&
+//                            personMap.get(i).getTrain().getLast().getViableSide()==tempDomino.firstside() ||
+//                            personMap.get(i).getTrain().getLast().getViableSide()==tempDomino.secondside()){     //TO CHANGE
+//                        personMap.get(i).putDomino(tempDomino,personMap.get(i).getTrain());
+//                    }
+//                }
+//                System.out.println(form.currentDomino.firstside());
+//                Domino current = new Domino(form.currentDomino.firstside(),form.currentDomino.secondside());
+//                System.out.println(current.firstside()+"|"+current.secondside());
+
             }
             else {
                 //BotAI
-                System.out.println("lol");
+                System.out.println("bot moves");
             }
 
 
-            if (individs.get(i).isEmptyHand()) return false;
+            if (personMap.get(i).isEmptyHand()) return false;
         }
         return true;
     }
