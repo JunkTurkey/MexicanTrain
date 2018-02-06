@@ -32,12 +32,13 @@ public class MainGUI extends JFrame {
         for (Domino domino:playerHand){
             String dominoString = domino.firstside() + "|" + domino.secondside();
             JButton dominoButton = new JButton(dominoString);
+            dominoButton.setBackground(Color.BLUE);
             ActionListener al = (ActionEvent e) -> {
                 JButton b = (JButton)e.getSource();
-                b.setBackground(Color.black);
+                if (b.getBackground()==Color.BLUE)  b.setBackground(Color.BLACK);
+                else  b.setBackground(Color.BLUE);
             };
             dominoButton.addActionListener(al);
-//            dominoButton.setSize(30,30);
             container.add(dominoButton);
         }
     }

@@ -72,16 +72,9 @@ public class Run {
             }
             if (individ.getClass()==IndividualPerson.class){
                 form.setSoloGame(individ.returnHand());
+                form.setVisible(true);
             }
         }
-//        int i=0;
-//        while (individs.get(i).getClass()==IndividualPerson.class){
-//            MainGUI form = new MainGUI(individs.get(i).returnHand());
-//            form.setVisible(true);
-//            i++;
-//        }
-
-
 
         while (Turn(individs)){}
 
