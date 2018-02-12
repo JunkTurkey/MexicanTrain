@@ -5,6 +5,7 @@ import com.junkturkey.train.MexicanTrain;
 import com.junkturkey.train.OwnTrain;
 import com.junkturkey.train.Train;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class IndividualPerson implements Person{
@@ -40,8 +41,8 @@ public class IndividualPerson implements Person{
     }
 
     public void putDomino(Domino domino, Train train){
-        train.addDomino(domino);
-        myHand.remove(domino);
+            train.addDomino(domino);
+            myHand.remove(domino);
     }
 
     public boolean search4Domino(Domino domino){

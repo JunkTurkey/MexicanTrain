@@ -25,6 +25,7 @@ public class OwnTrain implements Train {
             System.out.print("attached with side 2, side 2 locked, unlocked side = " + lastDomino.firstside());
         }
         else System.out.print("can not attach your domino");
+
     }
 
     public boolean isOpen(){

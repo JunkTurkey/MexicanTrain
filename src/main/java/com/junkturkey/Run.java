@@ -58,7 +58,8 @@ public class Run {
 
         final Random random = new Random();
 
-        ArrayList<Domino> roundDominos = dominos;
+        ArrayList<Domino> roundDominos = new ArrayList<>();
+        roundDominos.addAll(dominos);
 
         engine = new Domino(dominoLevel,dominoLevel);
         roundDominos.remove(engine);
