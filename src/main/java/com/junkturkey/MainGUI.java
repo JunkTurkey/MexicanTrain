@@ -9,12 +9,13 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MainGUI extends JFrame {
+public class MainGUI extends JFrame implements Runnable {
 
     private JPanel panel = new JPanel();
     //public JButton currentButton;
     public Domino currentDomino;
     private JButton endTurn = new JButton();
+    private ArrayList<Domino> playerHand;
 
     ActionListener endTurnAL = (ActionEvent e) -> {
         while (Run.Turn()){}
@@ -31,8 +32,11 @@ public class MainGUI extends JFrame {
     }
 
     public void setSoloGame(ArrayList<Domino> playerHand){
+        this.playerHand = new ArrayList<>();
+        this.playerHand = playerHand;
         Container container = this.getContentPane();
         HashMap<JButton,Domino> handMap = new HashMap<JButton,Domino>();
+        //ArrayList<Domino> playerHand = new ArrayList<>();
         for (Domino domino:playerHand){
             String dominoString = domino.firstside() + "|" + domino.secondside();
             JButton dominoButton = new JButton(dominoString);
@@ -56,5 +60,8 @@ public class MainGUI extends JFrame {
         }
     }
 
+    @Override
+    public void run() {
 
+    }
 }
