@@ -29,8 +29,6 @@ public class MainGUI extends JFrame {
             for(JButton button:tempSet)
                 button.setBackground(Color.WHITE);
         }
-
-
     };
 
     public MainGUI() {
