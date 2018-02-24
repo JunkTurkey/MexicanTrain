@@ -20,7 +20,7 @@ public class MainGUI extends JFrame {
     public Train currentTrain;
     private JButton endTurn = new JButton("End Turn");
     private ArrayList<Domino> playerHand = new ArrayList<>();
-    private JLabel urtrain; //TO CHANGE: Current train label
+    public JLabel urtrain; //TO CHANGE: Current train label
     private Set<JButton> tempSet;
 
     ActionListener endTurnAL = (ActionEvent e) -> {
