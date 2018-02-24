@@ -84,7 +84,7 @@ public class Run {
 
     }
 
-    //Round stage
+    //  Round stage
     //public static void Round(int dominoLevel){
 //
 //        final Random random = new Random();
@@ -116,18 +116,23 @@ public class Run {
     public static boolean Turn() {
         for (int i=0; i<personMap.size();i++){
             if (personMap.get(i).getClass()==IndividualPerson.class) {
-//                if (personMap.get(i).search4Domino(tempDomino)){
-//                    System.out.println("enter train name");
-//                    if (in.nextLine().equals("OwnTrain") && personMap.get(i).getTrain().isOpen() &&
-//                            personMap.get(i).getTrain().getLast().getViableSide()==tempDomino.firstside() ||
-//                            personMap.get(i).getTrain().getLast().getViableSide()==tempDomino.secondside()){     //TO CHANGE
-//                        personMap.get(i).putDomino(tempDomino,personMap.get(i).getTrain());
-//                    }
+//                if (form.currentDomino.getViableSide()==form.currentTrain.getLast().getViableSide()) {
+//                    form.currentTrain.addDomino(form.currentDomino);
+//                    form.currentTrain=null;
+//                    form.currentDomino=null;
+//                    //System.out.println("added " + form.currentDomino.firstside()+ "|" + form.currentDomino.secondside());
 //                }
-//                System.out.println(form.currentDomino.firstside());
-//                Domino current = new Domino(form.currentDomino.firstside(),form.currentDomino.secondside());
-//                System.out.println(current.firstside()+"|"+current.secondside());
-
+//                else {
+//                    System.out.println("Wrong domino attach");
+//                    return true;
+//                }
+                try{
+                    form.currentTrain.addDomino(form.currentDomino);
+                }
+                catch (IllegalArgumentException e){
+                    System.out.println("Wrong domino attach");
+                    return true;
+                }
             }
             else {
                 //BotAI

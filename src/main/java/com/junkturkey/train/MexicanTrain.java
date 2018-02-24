@@ -12,9 +12,12 @@ public class MexicanTrain implements Train {
     private MexicanTrain() {
     }
 
+
+
     private boolean isOpenFlag = false;
     private Domino lastDomino;
 
+    public void setEngine(Domino engine) { this.lastDomino = engine; }
 
     public void addDomino(Domino domino){
         if ((domino.firstside()==lastDomino.firstside() &&  domino.viableSide()==1)){

@@ -5,8 +5,6 @@ import com.junkturkey.Run;
 import com.junkturkey.domino.Domino;
 import com.junkturkey.person.IndividualPerson;
 import com.junkturkey.person.Person;
-
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -37,9 +35,10 @@ public class Round implements Runnable{
                 int temp = random.nextInt(roundDominos.size());
                 individ.addToHand(roundDominos.get(temp));
                 roundDominos.remove(temp);
+                individ.getTrain().setEngine(engine);
             }
             if (individ.getClass()==IndividualPerson.class){        //TO CHANGE: Simple mode choosing method
-                form.setSoloGame(individ.returnHand());
+                form.setSoloGame(individ);
                 form.setVisible(true);
             }
         }

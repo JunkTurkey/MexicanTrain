@@ -11,5 +11,7 @@ public interface Train {
 
     Domino getLast();
 
+    void setEngine(Domino engine);
+
 
 }

@@ -1,6 +1,8 @@
 package com.junkturkey;
 
 import com.junkturkey.domino.Domino;
+import com.junkturkey.person.Person;
+import com.junkturkey.train.Train;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,20 +10,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
-public class MainGUI extends JFrame implements Runnable {
+public class MainGUI extends JFrame {
 
     private JPanel panel = new JPanel();
-    //public JButton currentButton;
     public Domino currentDomino;
-    private JButton endTurn = new JButton();
-    private ArrayList<Domino> playerHand;
+    public Train currentTrain;
+    private JButton endTurn = new JButton("End Turn");
+    private ArrayList<Domino> playerHand = new ArrayList<>();
+    private JLabel urtrain; //TO CHANGE: Current train label
+    private Set<JButton> tempSet;
 
     ActionListener endTurnAL = (ActionEvent e) -> {
-        while (Run.Turn()){}
+        if (Run.Turn()){
+            currentDomino = null;
+            for(JButton button:tempSet)
+                button.setBackground(Color.WHITE);
+        }
+
+
     };
 
-    public MainGUI() throws HeadlessException {
+    public MainGUI() {
         super("Mexican Train");
         this.setBounds(400,200,700,400);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,37 +43,38 @@ public class MainGUI extends JFrame implements Runnable {
         this.getContentPane().add(endTurn);
     }
 
-    public void setSoloGame(ArrayList<Domino> playerHand){
-        this.playerHand = new ArrayList<>();
-        this.playerHand = playerHand;
+    public void setSoloGame(Person individ){
+        this.playerHand = individ.returnHand();
         Container container = this.getContentPane();
         HashMap<JButton,Domino> handMap = new HashMap<JButton,Domino>();
-        //ArrayList<Domino> playerHand = new ArrayList<>();
         for (Domino domino:playerHand){
+            currentTrain = individ.getTrain();
             String dominoString = domino.firstside() + "|" + domino.secondside();
             JButton dominoButton = new JButton(dominoString);
-            dominoButton.setBackground(Color.BLUE);
+            dominoButton.setBackground(Color.WHITE);
             ActionListener al = (ActionEvent e) -> {
                 JButton b = (JButton)e.getSource();
-                if (b.getBackground()==Color.BLUE)  {
+                if (b.getBackground()==Color.WHITE)  {
+                    tempSet = handMap.keySet();
+                    for(JButton button:tempSet)
+                        button.setBackground(Color.WHITE);
                     b.setBackground(Color.BLACK);
                     currentDomino = domino;
+                    currentTrain = individ.getTrain(); //TO CHANGE: Chosing the train
                     endTurn.setEnabled(true);   //TO CHANGE
                 }
                 else  {
-                    b.setBackground(Color.BLUE);
+                    b.setBackground(Color.WHITE);
                     currentDomino=null;
+                    endTurn.setEnabled(false);
                 }
             };
             dominoButton.addActionListener(al);
             handMap.put(dominoButton,domino);
             container.add(dominoButton);
-
         }
-    }
-
-    @Override
-    public void run() {
-
+        String tempString = new StringBuilder().append(currentTrain.getLast().firstside()).append("|").append(currentTrain.getLast().secondside()).toString();
+        urtrain = new JLabel(tempString);
+        container.add(urtrain);
     }
 }
