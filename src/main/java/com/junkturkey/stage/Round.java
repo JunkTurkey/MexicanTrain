@@ -11,10 +11,9 @@ import java.util.Random;
 
 public class Round implements Runnable{
 
-    private ArrayList<Domino> dominos= Run.getDominos();
-    private Domino engine = Run.getEngine();
+    private ArrayList<Domino> roundDominos;
+    private Domino engine;
     private HashMap<Integer, Person> personMap = Run.getPersonMap();
-    private int dominoLevel = Run.getDominoLevel();
     private MainGUI form = Run.getForm();
 
     @Override
@@ -22,10 +21,8 @@ public class Round implements Runnable{
 
         final Random random = new Random();
 
-        ArrayList<Domino> roundDominos = new ArrayList<>();
-        roundDominos.addAll(dominos);
-
-        engine = new Domino(dominoLevel,dominoLevel);
+        roundDominos = Run.getDominos();
+        engine = Run.getEngine();
         roundDominos.remove(engine);
 
         //Gaining dominos to the start hand
@@ -40,6 +37,7 @@ public class Round implements Runnable{
             if (individ.getClass()==IndividualPerson.class){        //TO CHANGE: Simple mode choosing method
                 form.setSoloGame(individ);
                 form.setVisible(true);
+
             }
         }
     }

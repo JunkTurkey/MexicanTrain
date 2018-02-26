@@ -2,6 +2,7 @@ package com.junkturkey;
 
 import com.junkturkey.domino.Domino;
 import com.junkturkey.person.Person;
+import com.junkturkey.stage.Round;
 import com.junkturkey.train.Train;
 
 import javax.swing.*;
@@ -16,6 +17,7 @@ import java.util.Set;
 public class MainGUI extends JFrame {
 
     private JPanel panel = new JPanel();
+    private JButton currentButton;
     public Domino currentDomino;
     public Train currentTrain;
     private JButton endTurn = new JButton("End Turn");
@@ -28,6 +30,19 @@ public class MainGUI extends JFrame {
             currentDomino = null;
             for(JButton button:tempSet)
                 button.setBackground(Color.WHITE);
+            getContentPane().remove(currentButton);
+
+            if (Run.getDominoLevel() > 0) {
+                Runnable round = new Round();
+                Thread thread = new Thread(round);
+                try {
+                    Run.decreaseDominoLevel();
+                    Run.setEngine(new Domino(Run.getDominoLevel(),Run.getDominoLevel()));
+                    thread.join();
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+            }
         }
     };
 
@@ -57,6 +72,7 @@ public class MainGUI extends JFrame {
                     for(JButton button:tempSet)
                         button.setBackground(Color.WHITE);
                     b.setBackground(Color.BLACK);
+                    currentButton = b;
                     currentDomino = domino;
                     currentTrain = individ.getTrain(); //TO CHANGE: Chosing the train
                     endTurn.setEnabled(true);   //TO CHANGE

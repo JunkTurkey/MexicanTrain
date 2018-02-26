@@ -26,6 +26,8 @@ public class Run {
 
     public static int getDominoLevel() { return dominoLevel; }
 
+    public static void decreaseDominoLevel () { dominoLevel--; }
+
     public static int getPlayersAmount() { return playersAmount; }
 
     public static MainGUI getForm() { return form; }
@@ -38,6 +40,8 @@ public class Run {
         individualPlayersAmount = 1;
         Run.Game();
     }
+
+    public static void setEngine(Domino engine) { Run.engine = engine; }
 
     //Game stage
     public static void Game(){
@@ -68,20 +72,10 @@ public class Run {
         if (individualPlayersAmount==1) { form = new MainGUI(); }       //TO CHANGE: Simple gui creation
 
         //Starting round
+        engine = new Domino(dominoLevel, dominoLevel);
         Runnable round = new Round();
         Thread thread = new Thread(round);
         thread.start();
-        for (int i=dominoLevel; i>0; i--){
-            round = new Round();
-            thread = new Thread(round);
-            try {
-                thread.join();          //DANGER: MB Wrong thread using
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-
     }
 
     //  Round stage
