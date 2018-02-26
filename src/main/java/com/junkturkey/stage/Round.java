@@ -13,8 +13,9 @@ public class Round implements Runnable{
 
     private ArrayList<Domino> roundDominos;
     private Domino engine;
-    private HashMap<Integer, Person> personMap = Run.getPersonMap();
     private MainGUI form = Run.getForm();
+
+    public ArrayList<Domino> getRoundDominos() { return roundDominos; }
 
     @Override
     public void run() {
@@ -26,8 +27,8 @@ public class Round implements Runnable{
         roundDominos.remove(engine);
 
         //Gaining dominos to the start hand
-        for (int i=0; i<personMap.size(); i++){
-            Person individ = personMap.get(i);
+        for (int i=0; i<Run.personMap.size(); i++){
+            Person individ = Run.personMap.get(i);
             for (int j = 0; j < 12; j++) {        //TO CHANGE: Change (12) as start dominos amount
                 int temp = random.nextInt(roundDominos.size());
                 individ.addToHand(roundDominos.get(temp));
@@ -37,8 +38,8 @@ public class Round implements Runnable{
             if (individ.getClass()==IndividualPerson.class){        //TO CHANGE: Simple mode choosing method
                 form.setSoloGame(individ);
                 form.setVisible(true);
-
             }
         }
+        Run.setRoundDominos(roundDominos);
     }
 }

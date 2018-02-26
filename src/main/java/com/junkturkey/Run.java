@@ -11,18 +11,19 @@ import java.util.*;
 public class Run {
 
     private static ArrayList<Domino> dominos;
+    public static ArrayList<Domino> roundDominos;
     private static Domino engine;
     private static MainGUI form;
-    private static HashMap<Integer, Person> personMap;
+    public static HashMap<Integer, Person> personMap;
     private static int dominoLevel;
     private static int playersAmount;
     private static int individualPlayersAmount;
 
+    public static void setRoundDominos(ArrayList<Domino> roundDominos) { Run.roundDominos = roundDominos; }
+
     public static ArrayList<Domino> getDominos() { return dominos; }
 
     public static Domino getEngine() { return engine; }
-
-    public static HashMap<Integer, Person> getPersonMap() { return personMap; }
 
     public static int getDominoLevel() { return dominoLevel; }
 
@@ -78,50 +79,13 @@ public class Run {
         thread.start();
     }
 
-    //  Round stage
-    //public static void Round(int dominoLevel){
-//
-//        final Random random = new Random();
-//
-//        ArrayList<Domino> roundDominos = new ArrayList<>();
-//        roundDominos.addAll(dominos);
-//
-//        engine = new Domino(dominoLevel,dominoLevel);
-//        roundDominos.remove(engine);
-//
-//        //Gaining dominos to the start hand
-//        for (int i=0; i<personMap.size(); i++){
-//            Person individ = personMap.get(i);
-//            for (int j = 0; j < 12; j++) {        //TO CHANGE: Change (12) as start dominos amount
-//                int temp = random.nextInt(roundDominos.size());
-//                individ.addToHand(roundDominos.get(temp));
-//                roundDominos.remove(temp);
-//            }
-//            if (individ.getClass()==IndividualPerson.class){        //TO CHANGE: Simple mode choosing method
-//                form.setSoloGame(individ.returnHand());
-//                form.setVisible(true);
-//            }
-//        }
-
-        //while (Turn(personMap)){}
-    //}
-
     //Turn stage
     public static boolean Turn() {
         for (int i=0; i<personMap.size();i++){
             if (personMap.get(i).getClass()==IndividualPerson.class) {
-//                if (form.currentDomino.getViableSide()==form.currentTrain.getLast().getViableSide()) {
-//                    form.currentTrain.addDomino(form.currentDomino);
-//                    form.currentTrain=null;
-//                    form.currentDomino=null;
-//                    //System.out.println("added " + form.currentDomino.firstside()+ "|" + form.currentDomino.secondside());
-//                }
-//                else {
-//                    System.out.println("Wrong domino attach");
-//                    return true;
-//                }
                 try{
                     form.currentTrain.addDomino(form.currentDomino);
+                    form.getContentPane().remove(form.currentButton);
                 }
                 catch (IllegalArgumentException e){
                     System.out.println("Wrong domino attach");
@@ -132,8 +96,6 @@ public class Run {
                 //BotAI
                 System.out.println("bot moves");
             }
-
-
             if (personMap.get(i).isEmptyHand()) return false;
         }
         return true;
